@@ -11,4 +11,4 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 
-#prueba 6
+#prueba7
