@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>ModaStyle - Tienda de Ropa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f3f0ec;
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: #eae0d5;
+      padding: 32px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #c9a96e, #e8d5b7, #c9a96e);
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    header h1 span { color: #c9a96e; }
+    header p {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      opacity: 0.7;
+      font-weight: 300;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 20px;
+    }
+    section {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      padding: 28px;
+      margin-bottom: 28px;
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: #1a1a2e;
+    }
+    .btn {
+      padding: 10px 22px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-primary {
+      background: #1a1a2e;
+      color: #fff;
+    }
+    .btn-primary:hover { background: #0f3460; transform: translateY(-1px); }
+    .btn-accent {
+      background: #c9a96e;
+      color: #1a1a2e;
+    }
+    .btn-accent:hover { background: #d4b97f; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #1a1a2e;
+      color: #1a1a2e;
+    }
+    .btn-outline:hover { background: #f3f0ec; }
+    .btn-danger {
+      background: #e74c3c;
+      color: #fff;
+    }
+    .btn-danger:hover { background: #c0392b; transform: translateY(-1px); }
+    .btn-sm { padding: 6px 14px; font-size: 0.8rem; }
+
+    .productos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .producto-card {
+      background: #faf8f6;
+      border: 1px solid #e8e2da;
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .producto-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      border-color: #c9a96e;
+    }
+    .producto-card .icon {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+    .producto-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+    }
+    .producto-card .desc {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .producto-card .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid #e8e2da;
+    }
+    .producto-card .precio {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #0f3460;
+    }
+    .producto-card .stock {
+      font-size: 0.8rem;
+      color: #888;
+    }
+    .producto-card .stock span {
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+    .producto-card .acciones {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+      justify-content: flex-end;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .form-group { display: flex; flex-direction: column; }
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 5px;
+    }
+    .form-group input,
+    .form-group textarea {
+      padding: 10px 12px;
+      border: 1.5px solid #d1cbc3;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      transition: border 0.2s;
+      background: #faf8f6;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #c9a96e;
+      box-shadow: 0 0 0 3px rgba(201,169,110,0.15);
+    }
+    .form-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+      align-items: center;
+    }
+
+    #status {
+      margin-top: 12px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      display: none;
+    }
+    #status.show { display: block; }
+    #status.ok {
+      background: #eaf7ee;
+      color: #1a7a3a;
+      border: 1px solid #b8dfc6;
+    }
+    #status.error {
+      background: #fde8e8;
+      color: #b91c1c;
+      border: 1px solid #f5c6c6;
+    }
+
+    @media (max-width: 640px) {
+      header h1 { font-size: 1.7rem; }
+      .productos-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Moda<span>Style</span></h1>
+    <p>Colección CRUD · Gestión de productos</p>
+  </header>
+  <div class="container">
+    <section>
+      <div class="section-header">
+        <h2>Catálogo</h2>
+        <button class="btn btn-accent" id="btnCargar">&#x21bb; Actualizar</button>
+      </div>
+      <div class="productos-grid" id="productosGrid">
+        <p style="color:#888;">Presiona "Actualizar" para cargar los productos.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <h2 id="formTitle">Nuevo producto</h2>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" placeholder="Ej: Camiseta Algodón Premium" />
+        </div>
+        <div class="form-group">
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcion" rows="2" placeholder="Ej: Algodón 100%, mangas cortas"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="precio">Precio ($)</label>
+          <input type="number" id="precio" step="0.01" min="0" placeholder="Ej: 19990" />
+        </div>
+        <div class="form-group">
+          <label for="stock">Stock</label>
+          <input type="number" id="stock" min="0" placeholder="Ej: 10" />
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-primary" id="btnGuardar">Guardar</button>
+        <button class="btn btn-outline" id="btnCancelar">Cancelar</button>
+      </div>
+      <div id="status"></div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
