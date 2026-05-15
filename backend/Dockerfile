@@ -15,5 +15,3 @@ COPY --from=builder /app/package.json ./package.json
 USER appuser
 EXPOSE 3001
 CMD ["node", "server.js"]
-
-#comentario prueba
