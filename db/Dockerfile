@@ -14,4 +14,4 @@ COPY init.sql /docker-entrypoint-initdb.d/
 # Exponer el puerto de MySQL
 EXPOSE 3306
 
-#prueba7
+#prueba8
